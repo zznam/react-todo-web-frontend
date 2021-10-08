@@ -3,12 +3,19 @@ import { connect } from 'react-redux';
 import TodoListItem from './TodoListItem'
 import NewTodoForm from './NewTodoForm'
 import { loadTodos, deleteTodoRequest, markTodoAsCompleted } from './thunks'
-import './TodoList.css'
 import {
     getTodosLoading,
     getIncompleteTodos,
     getCompletedTodos,
 } from "./selectors";
+import styled from 'styled-components'
+
+const ListWrapper = styled.div`
+    max-width: 700px;
+    margin:auto;
+`;
+
+
 const TodoList = ({ incompleteTodos = [], completedTodos = [], onRemovePressed, onCompletedPressed, isLoading, startLoadingTodos }) => {
 
     useEffect(() => {
@@ -17,13 +24,13 @@ const TodoList = ({ incompleteTodos = [], completedTodos = [], onRemovePressed, 
     }, []);
     const loadingMessage = <div>Loading Todos...</div>
     const content = (
-        <div className="list-wrapper">
+        <ListWrapper>
             <NewTodoForm />
             <h3>Incomplete Todos:</h3>
             {incompleteTodos.map(todo => <TodoListItem key={todo.text} todo={todo} onRemovePressed={onRemovePressed} onCompletedPressed={onCompletedPressed} />)}
             <h3>Completed Todos:</h3>
             {completedTodos.map(todo => <TodoListItem key={todo.text} todo={todo} onRemovePressed={onRemovePressed} onCompletedPressed={onCompletedPressed} />)}
-        </div>
+        </ListWrapper>
     )
     return isLoading ? loadingMessage : content;
 }
