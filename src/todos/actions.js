@@ -4,14 +4,14 @@ export const createTodo = todo => ({
     payload: { todo },
 });
 export const REMOVE_TODO = 'REMOVE_TODO';
-export const removeTodo = text => ({
+export const removeTodo = removedTodo => ({
     type: REMOVE_TODO,
-    payload: { text },
+    payload: { removedTodo },
 });
 export const MARK_AS_COMPLETED = 'MARK_AS_COMPLETED';
-export const markAsCompleted = text => ({
+export const markAsCompleted = todo => ({
     type: MARK_AS_COMPLETED,
-    payload: { text },
+    payload: { todo },
 });
 
 export const LOAD_TODOS_IN_PROGRESS = 'LOAD_TODOS_IN_PROGRESS';
